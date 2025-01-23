@@ -5,7 +5,7 @@ from pylab import *
 import mahotas
 from PIL import Image
 Im=mahotas.colors.rgb2gray(array(Image.open('otsu1.jpg')))
-levels=16;
+levels=256;
 Im=( ceil((Im/255.0)*(levels-1) )).astype(uint8);
 F,I=histogram(Im,bins=linspace(0,levels,levels+1))
 pixels=sum(F)
@@ -53,6 +53,6 @@ for i in range(0,levels):
     subplot(2,2,4)
     imshow(Im>threshold,cmap='gray')
     title('Best threshold discovered so far')
-    pause(0.1)
+    pause(.1)
 
 
