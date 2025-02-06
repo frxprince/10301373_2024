@@ -7,7 +7,7 @@ Im= array(Image.open("frontier_color57.jpg"))
 r,c,d=Im.shape
 YCbCr= color.rgb2ycbcr(Im)
 fY=1
-fC=0.2
+fC=0.5
 Y= YCbCr[:,:,0];Cb=YCbCr[:,:,1];Cr=YCbCr[:,:,2]
 subplot(2,4,1);imshow(Im)
 subplot(2,4,2);imshow(Y,cmap='gray');subplot(2,4,3);imshow(Cb,cmap='gray')
