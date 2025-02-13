@@ -1,5 +1,6 @@
 from pylab import *
 from scipy.fftpack import *
+from lab7fx import *
 
 I=array([
 [208,	244,	108,	173,	71,	112,	181,	245],
@@ -24,6 +25,11 @@ Q=array([
 
 Y=dct(dct(I.T,2,norm='ortho').T,2,norm='ortho')
 YQ=(Y/Q).round()
+L=fzigzag(YQ)
+L2=izigzag(L,8,8)
+
+
+
 Y=YQ*Q
 I2=uint8(idct(idct(Y.T,norm='ortho').T,norm='ortho'))
 subplot(1,3,1);imshow(I,cmap='gray')
