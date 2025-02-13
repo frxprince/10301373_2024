@@ -7,13 +7,6 @@ G= ones((9,9),dtype=int)/(9*9)
 ImLowpass= scipy.signal.convolve2d(Im,G)
 Ims=ImLowpass < 200
 
-
-#imshow(Ims,cmap='gray')
-#show()
-
-
-
-
 patch=3
 L,n = mahotas.label(Ims,ones((3,3),dtype=int))
 plt,ax=subplots(1,2)
