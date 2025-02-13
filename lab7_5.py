@@ -2,7 +2,8 @@ from pylab import *
 from scipy.fftpack import *
 from lab7fx import *
 from PIL import Image
-
+import zlib
+import struct
 def dct2(Im):
     return dct(dct(Im.T,2,norm='ortho').T,2,norm='ortho')
 
@@ -33,5 +34,8 @@ for i in range(0,h,block):
          Yq=(Y/Q).astype(int16)
          Yqz=fzigzag(Yq).astype(int16)
          Coded.extend(Yqz)
-         
+bCoded=array(Coded,dtype=int16).tobytes()
+jpegdata=zlib.compress(bCoded)
+print("original %d x %d = %d compressed to %d , ratio = %f"
+      %(w,h,w*h,len(jpegdata),len(jpegdata)/(w*h)))
 show()
