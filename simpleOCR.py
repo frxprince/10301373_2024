@@ -30,15 +30,15 @@ for i in range(1,n+1):
     bx[0,1].imshow(transpose(Tc),cmap='gray')
     T.append(Tc)
     fig2.show()
-    pause(0.00001)
-#sys.exit(0)
+    pause(.0001)
+
 #---- image alignment -------    
 ax=fig.subplots(2,2)
 h,w=Im.shape
 ImE=Im<200#abs(ndimage.sobel(Im[round(.1*h):round(.9*h),round(.1*w):round(.9*w)]))
 ax[0,0].imshow(Im,cmap='gray',vmin=0,vmax=255)
 maxBlank=-1;degree=0
-for i in range(-10,10):
+for i in range(-15,10):
     ImT=ndimage.rotate(ImE,i,reshape=False)
     h,w=ImT.shape
     Px=sum(ImT,1)
@@ -50,7 +50,7 @@ for i in range(-10,10):
     ax[0,1].imshow(ImT,cmap='gray',vmin=0,vmax=ImT.max())
     ax[0,1].plot((Px/Px.max())*100,range(0,h))
     fig.show()
-    pause(0.0001)
+    pause(.0001)
 Im=Im+1
 Im_aligned= array(Image.fromarray(Im).rotate(degree,resample=Image.BICUBIC ))
 Im_aligned[Im_aligned==0]=255
@@ -58,6 +58,7 @@ Im_aligned=Im_aligned-1
 ImB=Im_aligned <200;
 ax[1,0].imshow(ImB,cmap='gray',vmin=0,vmax=1)
 fig.show()
+
 #------- line segmentation -------
 Px=sum(ImB,1)
 h,w=ImB.shape
@@ -100,7 +101,7 @@ for i in range(1,n+1):
                 bx[1,1].cla()
                 bx[1,1].imshow(transpose(t),cmap='gray')
                 fig2.show()
-                pause(0.000001)
+                pause(0.1)
         if(minDist<1500):
             print(digit,minDist)
         else:
